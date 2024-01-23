@@ -98,3 +98,19 @@ brand_freshness_30 = alt.Chart(brand_freshness_30_df).mark_bar().encode(
 
 st.write("Brand Freshness - Top 30 Countries by Branded POI Count")
 st.altair_chart(brand_freshness_30,use_container_width=True)
+
+
+hide_streamlit_style = """
+            <style>
+            [data-testid="stToolbar"] {visibility: hidden !important;}
+            footer {visibility: hidden !important;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+hide_decoration_bar_style = '''
+    <style>
+        header {visibility: hidden;}
+    </style>
+'''
+st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
