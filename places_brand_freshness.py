@@ -118,3 +118,17 @@ hide_decoration_bar_style = '''
     </style>
 '''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+
+css = '''
+<style>
+section.main > div:has(~ footer ) {
+    padding-bottom: 0px;
+}
+
+[data-testid="ScrollToBottomContainer"] {
+    overflow: hidden;
+}
+</style>
+'''
+
+st.markdown(css, unsafe_allow_html=True)
