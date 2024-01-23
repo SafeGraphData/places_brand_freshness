@@ -81,10 +81,11 @@ brand_freshness_30_df.rename(
     },
     inplace=True,
 )
-brand_freshness_30_df['Order'] = brand_freshness_30_df['File Age Range'].map({value: index for index, value in enumerate(freshness_list)})
 
-y_range = [0, 100]
 freshness_list = ['120d+', '91-120d', '61-90d', '31-60d', '0-30d'] 
+brand_freshness_30_df['Order'] = brand_freshness_30_df['File Age Range'].map({value: index for index, value in enumerate(freshness_list)})
+y_range = [0, 100]
+
 
 brand_freshness_30 = alt.Chart(brand_freshness_30_df).mark_bar().encode(
     x=alt.X('Country Code', sort=None, title=None),
