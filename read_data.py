@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from oauth2client.service_account import ServiceAccountCredentials
 
+@st.cache_data(ttl=43200)
 def read_from_gsheets(sheet_name):
     scope = ["https://www.googleapis.com/auth/spreadsheets"]
     credentials_dict = st.secrets["gcp_service_account"]
