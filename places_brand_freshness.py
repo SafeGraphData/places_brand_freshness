@@ -54,6 +54,7 @@ brand_freshness_30_df = read_from_gsheets("Brand freshness")[
 ]
 brand_freshness_30_df["country_poi_count"] = pd.to_numeric(brand_freshness_30_df["country_poi_count"])
 brand_freshness_30_df["pct_of_brands"] = pd.to_numeric(brand_freshness_30_df["pct_of_brands"])
+brand_freshness_30_df["pct_of_brands_rounded"] = round(brand_freshness_30_df["pct_of_brands"],4)
 brand_freshness_30_df["pct_of_brands"] *= 100
 
 top_30_unique = (
@@ -91,7 +92,10 @@ brand_freshness_30 = alt.Chart(brand_freshness_30_df).mark_bar().encode(
     x=alt.X('Country Code', sort=None, title=None),
       y=alt.Y('Percent of Brands:Q', scale=alt.Scale(domain=y_range)),
     color=alt.Color('File Age Range:N', scale=alt.Scale(domain=freshness_list)),
-    order = alt.Order('Order:O', sort = 'descending')
+    order = alt.Order('Order:O', sort = 'descending'),
+    tooltip=[alt.Tooltip('Country Code'),
+             alt.Tooltip('pct_of_brands_rounded', format = ",.2%", title="Percent of Brands"),
+             alt.Tooltip('File Age Range')]
 ).properties(
     width=800,
     height=400
